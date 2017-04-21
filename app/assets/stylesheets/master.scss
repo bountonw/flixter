@@ -5,12 +5,19 @@ html, body {
   height:100%;
 }
 
+body {
+	background: image_url('bg_grey.png');
+	font-family: 	Constantia, "Lucida Bright", Lucidabright, "Lucida Serif",
+								Lucida, "DejaVu Serif", "Bitstream Vera Serif", 
+								"Liberation Serif", Georgia, serif;
+}
+
 h1, h2, h3, h4, h5, h6, .navbar {
 	margin: 0;
 }
 
 .navbar {
-	font-family: 	"Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", 
+	font-family: 	"Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans",
 								"Bitstream Vera Sans", "Trebuchet MS", Verdana, 
 								"Verdana Ref", sans-serif;
 	font-weight: 200;
@@ -59,4 +66,10 @@ h1, h2, h3, h4, h5, h6, .navbar {
 
 .btn {
 	border-radius: 0;
+}
+
+.feature {
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
 }
