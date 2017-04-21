@@ -12,15 +12,3 @@
  *= require_tree .
  *= require_self
  */
-
-@import "bootstrap";
-@import "font-awesome";
-
-html, body {
-  height:100%;
-}
-
-
-.navbar-inverse, .bg-inverse {
-	background-color: #0D370D !important;
-}
