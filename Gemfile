@@ -58,4 +58,3 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'devise'
-
