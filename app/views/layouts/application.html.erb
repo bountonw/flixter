@@ -9,39 +9,41 @@
   </head>
   
   <body>
-	  <nav class="navbar navbar-toggleable-md navbar-inverse bg-green">
-		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <%= link_to 'Flixter', root_path, class: 'navbar-brand' %>
-		  
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav ml-auto justify-content-end">
-		      <li class="nav-item">
-		        <%= link_to root_path, class: 'nav-link' do %>
-		        	<i class="fa fa-plus-circle"></i>
-		        	Dummy Link 
-		      <% end %>
-		      </li>
-		      <% if user_signed_in? %>
+  	<div id="flex-content-container">
+		  <nav class="navbar navbar-toggleable-md navbar-inverse bg-green">
+			  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <%= link_to 'Flixter', root_path, class: 'navbar-brand' %>
+			  
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav ml-auto justify-content-end">
 			      <li class="nav-item">
-			        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+			        <%= link_to root_path, class: 'nav-link' do %>
+			        	<i class="fa fa-plus-circle"></i>
+			        	Dummy Link 
+			      <% end %>
 			      </li>
-			    <% else %>
-			    	<li class="nav-item">
-			        <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
-			      </li>
-			    	<li class="nav-item">
-			        <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
-			      </li>
-		      <% end %>
-		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
-		      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		    </form>
-		  </div>
-		</nav>
+			      <% if user_signed_in? %>
+				      <li class="nav-item">
+				        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+				      </li>
+				    <% else %>
+				    	<li class="nav-item">
+				        <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+				      </li>
+				    	<li class="nav-item">
+				        <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+				      </li>
+			      <% end %>
+			    </ul>
+			    <form class="form-inline my-2 my-lg-0">
+			      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			    </form>
+			  </div>
+			</nav>
+		</div>
 		<% if notice.present? %>
 		  <p class="alert alert-info"><%= notice %></p>
 		<% end %>
@@ -50,5 +52,14 @@
 		<% end %>
 
     <%= yield %>
+
+    <div id="footer">
+	    <footer class="container" role="footer">
+	    	<b>Footer Here </b>
+	    	<br />
+	    	<%= link_to 'Link', '#' %>
+	    </footer>
+    </div>
+
   </body>
 </html>
