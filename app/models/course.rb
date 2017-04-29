@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
 	belongs_to :user
+	has_many :sections
 
 	validates :title, presence: true, length: { in: 7..35 }
 	validates :description, presence: true, length: { maximum: 500 }
