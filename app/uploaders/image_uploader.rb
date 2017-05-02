@@ -16,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # limit size range
   def size_range
-    1..3.megabytes
+    1..2.megabytes
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -29,7 +29,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
-  #
+
+  process resize_to_fill: [800, 350]
+
   # def scale(width, height)
   #   # do something
   # end
