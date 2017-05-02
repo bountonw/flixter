@@ -63,3 +63,4 @@ gem "mini_magick"
 gem 'file_validators'
 gem "figaro"
 gem "fog"
+gem 'carrierwave-aws'
