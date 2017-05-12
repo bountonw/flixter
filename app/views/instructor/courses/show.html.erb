@@ -5,7 +5,7 @@
 	<br />
 	<%= link_to 'Preview as a Student...', course_path(current_course), class: 'btn btn-warning float-right' %>
 	</div>
-	
+
 	<div class="text-center">
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newSectionModal">
@@ -20,9 +20,15 @@
 					<span class="fa fa-ellipsis-v"></span>
 					<%= section.title %>
 				</div>
-				<%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
-					<br class="clear" />
-					<br class="clear" />
+
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+				  New Lesson…
+				</button>
+
+				<br class="clear" />
+				<br class="clear" />
+
 				<ul  class="lessons">
 					<% section.lessons.rank(:row_order).each do |lesson| %>
 						<li data-update-url=<%= instructor_lesson_path(lesson) %>>
@@ -74,23 +80,44 @@
 </div>
 
 
-<script type="text/javascript">
-	$(function() {
-		$('.sections').sortable({
-			update: function(event, ui) {
-				$.ajax({
-					type: 'PUT',
-					url: ui.item.data('update-url'),
-					dataType: 'json',
-					data: { section: { row_order_position: ui.item.index() } }
-				});
-			}
-		});
-	});
-</script>
+
+<!-- Modal -->
+<div class="modal fade" id="newLessonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newLessonModalLabel">Add a new lesson</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br />
+<%= simple_form_for @lesson, url: "#", html: {id: 'newLessonForm' } do |f| %>
+<div class="booyah-box col-10 offset-1">
+	<%= f.input :title %>
+		<%= f.input :subtitle %>
+		<%= f.input :video %>
+		
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <script type="text/javascript">
 	$(function() {
+		$('.new-lesson-button').click(function() {
+			var lessonUrl = $(event.target).data('lesson-url')
+			$('#newLessonForm').attr('action', lessonUrl);
+		});
+
 		$('.lessons').sortable({
 			update: function(event, ui) {
 				$.ajax({
@@ -98,6 +125,17 @@
 					url: ui.item.data('update-url'),
 					dataType: 'json',
 					data: { lesson: { row_order_position: ui.item.index() } }
+				});
+			}
+		});
+
+		$('.sections').sortable({
+			update: function(event, ui) {
+				$.ajax({
+					type: 'PUT',
+					url: ui.item.data('update-url'),
+					dataType: 'json',
+					data: { section: { row_order_position: ui.item.index() } }
 				});
 			}
 		});
