@@ -4,9 +4,13 @@
 	<%= image_tag current_course.image, class: 'img-fluid center-block' %>
 	<br />
 	<%= link_to 'Preview as a Student...', course_path(current_course), class: 'btn btn-warning float-right' %>
-	<br class="clear" />
+	</div>
+	
 	<div class="text-center">
-		<%= link_to 'Add a new section', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-lg' %>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newSectionModal">
+		  Add a new section…
+		</button>
 	</div>
 
 	<ul class="sections">
@@ -45,7 +49,30 @@
 		<% end %>
 	</ul>
 
+
+<!-- Modal -->
+<div class="modal fade" id="newSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newSectionModalLabel">Add a new section</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<%= simple_form_for @section, url: instructor_course_sections_path(current_course) do |f| %>
+      <div class="modal-body">
+					<%= f.input :title %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<%= f.submit "Add a section", class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
 
 <script type="text/javascript">
 	$(function() {
