@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   devise_for :users
   resource :dashboard, only: [:show]
+  get 'privacy', to: 'static_pages#privacy'
+  get 'team', to: 'static_pages#team'
+  get 'careers', to: 'static_pages#careers'
   resources :courses, only: [:index, :show] do
     resources :enrollments, only: [:create]
     resources :sections, only: [:update]
